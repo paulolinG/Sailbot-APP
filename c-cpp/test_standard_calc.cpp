@@ -56,7 +56,7 @@ void test_between1(CuTest *tc) {
 }
 
 void test_between2(CuTest *tc) {
-    CuAssertTrue(tc, is_angle_between(160, 170, -180));
+    CuAssertTrue(tc, is_angle_between(160, 170, 180));
 }
 
 int main(int argc, char const *argv[]) {
