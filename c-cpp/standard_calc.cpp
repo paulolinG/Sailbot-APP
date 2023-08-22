@@ -13,7 +13,22 @@
  * @return float: The bounded angle in degrees.
  */
 float bound_to_180(float angle) {
-    return 0;
+    int truncatedAngle = (int) angle;
+    // shifts the angle from the lowerbound if angle >= 180
+    if (angle >= 180) 
+    {
+        return -180 + (truncatedAngle % 180) + (angle - truncatedAngle);
+    } 
+    // shifts the angle from the upperbound if angle < -180
+    else if (angle < -180) 
+    {
+        return 180 - (-angle + truncatedAngle) - (-truncatedAngle % 180);
+    }
+    // angle is already between boundaries
+    else 
+    {
+        return angle;
+    }
 }
 
 /**
@@ -29,5 +44,26 @@ float bound_to_180(float angle) {
  * @return bool: TRUE when `middle_angle` is not in the reflex angle of `first_angle` and `second_angle`, FALSE otherwise
  */
 bool is_angle_between(float first_angle, float middle_angle, float second_angle) {
-    return true;
+    // bounds the angles to make it easier to compare
+    float boundedFirstAngle = bound_to_180(first_angle);
+    float boundedMiddleAngle = bound_to_180(middle_angle);
+    float boundedSecondAngle = bound_to_180(second_angle);
+    float maxAngle;
+    float minAngle;
+
+    // determines the greater angle between the first and second angle
+    if (boundedSecondAngle > boundedFirstAngle) {
+        maxAngle = boundedSecondAngle;
+        minAngle = boundedFirstAngle;
+    } else {
+        maxAngle = boundedFirstAngle;
+        minAngle = boundedSecondAngle;
+    }
+
+    // checks if the angle between second and first angle is the reflex angle
+    if ((maxAngle - minAngle) < (360 - (maxAngle - minAngle))) {
+        return (boundedMiddleAngle <= maxAngle && boundedMiddleAngle >= minAngle);
+    } else {
+        return ((boundedMiddleAngle >= maxAngle && boundedMiddleAngle < 180) || (boundedMiddleAngle >= -180 && boundedMiddleAngle <= minAngle));
+    }   
 }
