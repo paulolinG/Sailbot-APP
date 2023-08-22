@@ -1,6 +1,5 @@
 #include "stdio.h"
 #include "cutest/CuTest.c"
-#include "standard_calc.cpp"
 #include "standard_calc.h"
 
 /**************** Tests for bound_to_180() *******************/
