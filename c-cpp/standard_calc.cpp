@@ -17,12 +17,12 @@ float bound_to_180(float angle) {
     // shifts the angle from the lowerbound if angle >= 180
     if (angle >= 180) 
     {
-        return -180 + (truncatedAngle % 180) + (angle - truncatedAngle);
+        return -180 + ((truncatedAngle + 180) % 360) + (angle - truncatedAngle);
     } 
     // shifts the angle from the upperbound if angle < -180
     else if (angle < -180) 
     {
-        return 180 - (-angle + truncatedAngle) - (-truncatedAngle % 180);
+        return 180 - (-angle + truncatedAngle) - ((-truncatedAngle + 180) % 360);
     }
     // angle is already between boundaries
     else 
