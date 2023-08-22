@@ -4,12 +4,17 @@
 
 /**************** Tests for bound_to_180() *******************/
 void test_bound_basic1(CuTest *tc) {
-    CuAssertDblEquals(tc, 0, bound_to_180(0), 0.0001);
+    float input = 180.0;
+    float actual = bound_to_180(input);
+    float expected = -180.0;
+    CuAssertDblEquals(tc, expected, actual, 0.0001);
 }
-
 /**************** Tests for is_angle_between() *******************/
 void test_between_basic1(CuTest *tc) {
-    CuAssertTrue(tc, is_angle_between(0, 1, 2));
+    float firstAngle = 20.0;
+    float secondAngle = 30.0;
+    float thirdAngle = 40.0;
+    CuAssertTrue(tc, is_angle_between(firstAngle, secondAngle, thirdAngle));
 }
 
 int main(int argc, char const *argv[]) {
